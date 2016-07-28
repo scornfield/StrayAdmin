@@ -1,7 +1,6 @@
 <?php include('template/_top.php'); ?>
                
-               <!-- Content -->
-               <section id="content" class="container">
+
                     <!-- Shortcuts -->
                     <div class="shortcut-area">
                          <a class="shortcut" href="">
@@ -342,6 +341,93 @@
                          
                     </div>
                </section>
-          </section>
           
 <?php include('template/_bottom.php'); ?>
+
+<script>
+// Area Chart
+               $(function () {
+                    $('#areaChart').highcharts({
+                         chart: {
+                              type: 'area',
+                              backgroundColor:'rgba(255, 255, 255, 0.01)',
+                              height: 300
+                         },
+                         title: {
+                              text: '',
+                         },
+                         subtitle: {
+                              text: ''
+                         },
+                         xAxis: {
+                              labels: {
+                                   
+                              }
+                         },
+                         yAxis: {
+                              title: {
+                                   text: ''
+                              },
+                              labels: {
+                                   formatter: function() {
+                                        return this.value / 1000 +'k';
+                                   }
+                              },
+                              gridLineWidth: 1,
+                              gridLineColor: '#eaeaea'
+                         },
+                         tooltip: {
+                              pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                         },
+                         plotOptions: {
+                              area: {
+                                   pointStart: 1,
+                                   marker: {
+                                        enabled: false,
+                                        symbol: 'circle',
+                                        radius: 2,
+                                        states: {
+                                             hover: {
+                                                  enabled: true
+                                             }
+                                        }
+                                   }
+                              }
+                         },
+                         series: [{
+                              name: 'Bing',
+                              data: [0, 1060, 1605, 2471, 3322,
+                                   4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478,
+                                   15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049,
+                                   33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000,
+                                   35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
+                                   21000, 20000, 19000, 18000, 18000, 17000, 16000, 15000, 14000,
+                                   13000, 12000, 11000, 10000, 9000, 7000, 6000, 4000, 2000, 1000, 0]
+                         }, {
+                              name: 'Bing',
+                              data: [null, null , null , null ,null,
+                                   5, 25, 50, 120, 150, 200, 426, 660, 869, 1060, 1605, 2471, 3322,
+                                   4238, 5221, 6129, 7089, 8339, 9399, 10538, 11643, 13092, 14478,
+                                   15915, 17385, 19055, 21205, 23044, 25393, 27935, 30062, 32049,
+                                   33952, 35804, 37431, 39197, 45000, 43000, 41000, 39000, 37000,
+                                   35000, 33000, 31000, 29000, 27000, 25000, 24000, 23000, 22000,
+                                   21000, 20000, 19000, 18000, 18000, 17000, 16000]
+                         }],
+                         exporting: {
+                              enabled: false    
+                         },
+                         credits: {
+                              enabled: false
+                         },
+                         colors: [
+                              '#FFA206', 
+                              '#09AD30', 
+                         ],
+                         legend: {
+                              borderRadius: 0,
+                              borderColor: '#e3e3e3',
+                              enabled: false
+                         }
+                    });
+               });
+</script>

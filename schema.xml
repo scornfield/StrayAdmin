@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+  <table name="Teams" idMethod="native" phpName="Teams">
+    <column name="ID" phpName="Id" type="INTEGER" sqlType="int(11) unsigned" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="link" phpName="Link" type="VARCHAR" size="500" defaultValue=""/>
+    <column name="Owner" phpName="Owner" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="Name" phpName="Name" type="VARCHAR" size="255" required="true" defaultValue=""/>
+    <column name="nickname" phpName="Nickname" type="VARCHAR" size="64" required="true" defaultValue=""/>
+    <column name="Team_Abbrev" phpName="TeamAbbrev" type="VARCHAR" size="5" required="true" defaultValue=""/>
+    <column name="Division" phpName="Division" type="VARCHAR" size="2" defaultValue=""/>
+    <column name="email" phpName="Email" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="status" phpName="Status" type="CHAR" sqlType="enum('ACTIVE','DEFUNCT')" required="true" defaultValue="DEFUNCT"/>
+    <column name="comment" phpName="Comment" type="LONGVARCHAR"/>
+    <column name="league" phpName="League" type="VARCHAR" size="2" defaultValue=""/>
+    <column name="used" phpName="Used" type="CHAR" sqlType="enum('YES','NO')" required="true" defaultValue="NO"/>
+    <column name="email2" phpName="Email2" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="address" phpName="Address" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="city" phpName="City" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="state" phpName="State" type="VARCHAR" size="12" defaultValue=""/>
+    <column name="zip" phpName="Zip" type="VARCHAR" size="12" defaultValue=""/>
+    <column name="phone" phpName="Phone" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="team_link" phpName="TeamLink" type="VARCHAR" size="500" defaultValue=""/>
+    <column name="trade_link" phpName="TradeLink" type="VARCHAR" size="500" defaultValue=""/>
+    <column name="draft_link" phpName="DraftLink" type="VARCHAR" size="500" defaultValue=""/>
+    <column name="awards_link" phpName="AwardsLink" type="VARCHAR" size="500" defaultValue=""/>
+    <column name="aim" phpName="Aim" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="yahoo" phpName="Yahoo" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="create_ts" phpName="CreateTs" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="maint_ts" phpName="MaintTs" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="division_ref" name="teams_ibfk_1">
+      <reference local="Division" foreign="division"/>
+    </foreign-key>
+    <foreign-key foreignTable="league_ref" name="teams_ibfk_2">
+      <reference local="league" foreign="league"/>
+    </foreign-key>
+    <index name="Division">
+      <index-column name="Division"/>
+    </index>
+    <index name="league">
+      <index-column name="league"/>
+    </index>
+    <index name="nickname">
+      <index-column name="nickname"/>
+    </index>
+    <unique name="Team_Abbrev">
+      <unique-column name="Team_Abbrev"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="Teams_old" idMethod="native" phpName="TeamsOld">
+    <column name="ID" phpName="Id" type="INTEGER"/>
+    <column name="link" phpName="Link" type="LONGVARCHAR"/>
+    <column name="Owner" phpName="Owner" type="LONGVARCHAR"/>
+    <column name="Name" phpName="Name" type="LONGVARCHAR"/>
+    <column name="nickname" phpName="Nickname" type="LONGVARCHAR"/>
+    <column name="Team_Abbrev" phpName="TeamAbbrev" type="LONGVARCHAR"/>
+    <column name="Division" phpName="Division" type="LONGVARCHAR"/>
+    <column name="email" phpName="Email" type="LONGVARCHAR"/>
+    <column name="status" phpName="Status" type="LONGVARCHAR"/>
+    <column name="comment" phpName="Comment" type="LONGVARCHAR"/>
+    <column name="league" phpName="League" type="LONGVARCHAR"/>
+    <column name="used" phpName="Used" type="LONGVARCHAR"/>
+    <column name="email2" phpName="Email2" type="LONGVARCHAR"/>
+    <column name="address" phpName="Address" type="LONGVARCHAR"/>
+    <column name="city" phpName="City" type="LONGVARCHAR"/>
+    <column name="state" phpName="State" type="LONGVARCHAR"/>
+    <column name="zip" phpName="Zip" type="LONGVARCHAR"/>
+    <column name="phone" phpName="Phone" type="LONGVARCHAR"/>
+    <column name="team_link" phpName="TeamLink" type="LONGVARCHAR"/>
+    <column name="trade_link" phpName="TradeLink" type="LONGVARCHAR"/>
+    <column name="draft_link" phpName="DraftLink" type="LONGVARCHAR"/>
+    <column name="awards_link" phpName="AwardsLink" type="LONGVARCHAR"/>
+    <column name="aim" phpName="Aim" type="LONGVARCHAR"/>
+    <column name="yahoo" phpName="Yahoo" type="LONGVARCHAR"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="card_ref" idMethod="native" phpName="CardRef">
+    <column name="card" phpName="Card" type="BOOLEAN" size="1" primaryKey="true" required="true"/>
+    <column name="meaning" phpName="Meaning" type="VARCHAR" size="255"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="division_ref" idMethod="native" phpName="DivisionRef">
+    <column name="division" phpName="Division" type="VARCHAR" size="2" primaryKey="true" required="true" defaultValue=""/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="league_ref" idMethod="native" phpName="LeagueRef">
+    <column name="league" phpName="League" type="VARCHAR" size="2" primaryKey="true" required="true" defaultValue=""/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="mlb_team_ref" idMethod="native" phpName="MlbTeamRef">
+    <column name="mlb" phpName="Mlb" type="VARCHAR" size="4" primaryKey="true" required="true" defaultValue=""/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="players" idMethod="native" phpName="Players">
+    <column name="ID" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lastn" phpName="Lastn" type="VARCHAR" size="255" required="true" defaultValue=""/>
+    <column name="bats" phpName="Bats" type="VARCHAR" size="3" defaultValue=""/>
+    <column name="bday" phpName="Bday" type="DATE"/>
+    <column name="age" phpName="Age" type="INTEGER"/>
+    <column name="mlb" phpName="Mlb" type="VARCHAR" size="4" defaultValue=""/>
+    <column name="draft_year" phpName="DraftYear" type="VARCHAR" size="4" defaultValue=""/>
+    <column name="position" phpName="Position" type="VARCHAR" size="3" defaultValue=""/>
+    <column name="card" phpName="Card" type="BOOLEAN" size="1"/>
+    <column name="d_e" phpName="DE" type="VARCHAR" size="4" defaultValue=""/>
+    <column name="lg" phpName="Lg" type="VARCHAR" size="2" defaultValue=""/>
+    <column name="mwbl" phpName="Mwbl" type="VARCHAR" size="5" defaultValue=""/>
+    <column name="category" phpName="Category" type="VARCHAR" size="255" defaultValue=""/>
+    <column name="comment" phpName="Comment" type="LONGVARCHAR"/>
+    <column name="mwbl_link" phpName="MwblLink" type="VARCHAR" size="500" defaultValue=""/>
+    <column name="mlb_link" phpName="MlbLink" type="VARCHAR" size="500" defaultValue=""/>
+    <column name="mwbl_link_enabled" phpName="MwblLinkEnabled" type="BOOLEAN" size="1"/>
+    <column name="mlb_link_enabled" phpName="MlbLinkEnabled" type="BOOLEAN" size="1"/>
+    <column name="create_ts" phpName="CreateTs" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <column name="maint_ts" phpName="MaintTs" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key foreignTable="mlb_team_ref" name="players_ibfk_1">
+      <reference local="mlb" foreign="mlb"/>
+    </foreign-key>
+    <foreign-key foreignTable="card_ref" name="players_ibfk_2">
+      <reference local="card" foreign="card"/>
+    </foreign-key>
+    <foreign-key foreignTable="division_ref" name="players_ibfk_3">
+      <reference local="lg" foreign="division"/>
+    </foreign-key>
+    <foreign-key foreignTable="position_ref" name="players_ibfk_4">
+      <reference local="position" foreign="position"/>
+    </foreign-key>
+    <foreign-key foreignTable="Teams" name="players_ibfk_5">
+      <reference local="mwbl" foreign="Team_Abbrev"/>
+    </foreign-key>
+    <index name="mlb">
+      <index-column name="mlb"/>
+    </index>
+    <index name="mwbl">
+      <index-column name="mwbl"/>
+    </index>
+    <index name="position">
+      <index-column name="position"/>
+    </index>
+    <index name="card">
+      <index-column name="card"/>
+    </index>
+    <index name="lg">
+      <index-column name="lg"/>
+    </index>
+    <unique name="lastn">
+      <unique-column name="lastn"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="players_old" idMethod="native" phpName="PlayersOld">
+    <column name="ID" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lastn" phpName="Lastn" type="LONGVARCHAR"/>
+    <column name="bats" phpName="Bats" type="LONGVARCHAR"/>
+    <column name="bday" phpName="Bday" type="DATE"/>
+    <column name="age" phpName="Age" type="INTEGER"/>
+    <column name="mlb" phpName="Mlb" type="LONGVARCHAR"/>
+    <column name="draft_year" phpName="DraftYear" type="LONGVARCHAR"/>
+    <column name="position" phpName="Position" type="LONGVARCHAR"/>
+    <column name="card" phpName="Card" type="INTEGER"/>
+    <column name="d_e" phpName="DE" type="LONGVARCHAR"/>
+    <column name="lg" phpName="Lg" type="LONGVARCHAR"/>
+    <column name="mwbl" phpName="Mwbl" type="LONGVARCHAR"/>
+    <column name="category" phpName="Category" type="LONGVARCHAR"/>
+    <column name="comment" phpName="Comment" type="LONGVARCHAR"/>
+    <column name="mwbl_link" phpName="MwblLink" type="LONGVARCHAR"/>
+    <column name="mlb_link" phpName="MlbLink" type="LONGVARCHAR"/>
+    <column name="mwbl_link_enabled" phpName="MwblLinkEnabled" type="INTEGER"/>
+    <column name="mlb_link_enabled" phpName="MlbLinkEnabled" type="INTEGER"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="position_ref" idMethod="native" phpName="PositionRef">
+    <column name="position" phpName="Position" type="VARCHAR" size="3" primaryKey="true" required="true" defaultValue=""/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>

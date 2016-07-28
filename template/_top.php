@@ -501,3 +501,6 @@
                          <i class="icon-angle-left"></i>
                     </span>
                </aside>
+
+               <!-- Content -->
+               <section id="content" class="container">

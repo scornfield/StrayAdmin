@@ -1,0 +1,14 @@
+-- Things to do to correct data
+
+-- Set one of PHIs to PHI2 and one of FARs to FAR2 to allow creation of unique key 
+--  and foreign key constraints on Team_Abbrev
+
+-- Set empty strings to NULL for foreign keyed columns
+update Teams set `Division` = null where trim(`Division`) ='';
+update Teams set `league` = null where trim(`league`) ='';
+
+update players set `d_e` = null where trim(`d_e`) ='';
+update players set `Draft_Year` = null where trim(`Draft_Year`) ='';
+update players set `mwbl` = null where trim(`mwbl`) ='';
+update players set `mlb` = null where trim(`mlb`) ='';
+update players set `lg` = null where trim(`lg`) ='';
